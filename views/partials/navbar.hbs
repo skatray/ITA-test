@@ -1,8 +1,8 @@
-<nav class="#311b92 deep-purple darken-4">
+ <nav class="#311b92 deep-purple darken-4">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center"><i class="tiny material-icons">build</i> ITA test</a>
-        <ul id="nav-mobile" class="hide-on-med-and-down">
-
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul  class="hide-on-med-and-down">
             {{#if isIndex}}
             <li class="active"><a href="/">Banks</a></li>
             {{else}}
@@ -22,3 +22,21 @@
         </ul>
     </div>
 </nav>
+<ul class="sidenav" id="mobile-demo">
+    {{#if isIndex}}
+        <li class="active"><a href="/">Banks</a></li>
+    {{else}}
+        <li><a href="/">Banks</a></li>
+    {{/if}}
+    {{#if isCreate}}
+        <li  class="active"><a href="/create">Add Bank</a></li>
+    {{else}}
+        <li><a href="/create">Add Bank</a></li>
+    {{/if}}
+    {{#if isCalculator}}
+        <li  class="active"><a href="/calculator">Mortgage calculator</a></li>
+    {{else}}
+        <li><a href="/calculator">Mortgage calculator</a></li>
+    {{/if}}
+
+</ul>

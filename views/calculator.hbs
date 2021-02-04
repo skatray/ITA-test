@@ -1,6 +1,6 @@
 <h4>Mortgage calculator</h4>
-<hr/>
-<table class="centered" style="margin-top: 20px">
+<p>Please enter details below:</p>
+<table class="centered striped">
     <!--  <caption>Calculate</caption>
       <thead>
       <tr>
@@ -9,14 +9,22 @@
           <th>Maximum loan</th>
           <th>Minimum down payment</th>
           <th>Loan term</th>
-      </tr> -->
-    </thead>
+      </tr>
+    </thead>-->
 
     <tbody>
     <tr>
 
-        <td>$</td><td><input type="number" name="Initial loan" value="" onkeyup="duo()"><label class="left" for="Initial loan">Initial loan:</label></td>
-        <td>$</td><td><input type="number" name="Down payment" value="" onkeyup="duo()"><label class="left" for="Initial loan">Down payment:</label></td>
+        <td>$</td><td>
+        <div class="input-field">
+            <input id="Initial loan" type="number" name="Initial loan" value="" onkeyup="duo()">
+            <label  for="Initial loan">Initial loan:</label>
+        </div></td>
+        <td>$</td><td>
+        <div class="input-field">
+            <input id="Down payment" type="number" name="Down payment" value="" onkeyup="duo()">
+            <label  for="Down payment">Down payment:</label>
+        </div></td>
        <!-- <td>
             <div class="input-field col s12 ">
                 <select class="browser-default">
@@ -53,43 +61,47 @@
 
     <tbody>
     {{#each banks}}
+        <input type="hidden" value="{{_id}}" name="id">
     <tr>
 
-        <td class="left"style="display: none"><a href="/bank/{{_id}}">{{bank_name}}</a></td>
+        <td class="left" style="display: none"><a href="/bank/{{_id}}">{{bank_name}}</a></td>
         <td style="display: none">{{interest_rate}}</td>
         <td style="display: none">{{loan_term}}</td>
         <td style="display: none"></td>
         <td style="display: none">{{maximum_loan}}</td>
         <td style="display: none">{{{m_d_payment}}}</td>
-        <input type="hidden" value="{{_id}}" name="id">
+
     </tr>
     {{/each}}
     </tbody>
 </table>
 
 <script>
+    if(document.querySelector("input[name='Initial loan']").value != "" || document.querySelector("input[name='Down payment']").value !=""){
+        duo();
+    }
 
-    function calc(money,firts_persent,year_persent,month){
+    function calc(money,firts_persent,year_persent){
 
         let  p=Number(money)
         let  r=Number(firts_persent)
-        let  n=Number (month)
+      //  let  n=Number (month)
       //  m=(p*(r/12)*(1+r/12)^n)/((1+r/12)^n-1)
-              m=  ((p+p*year_persent/100)-(p*firts_persent/100))/12
+         let  m=  ((p+p*year_persent/100)-(p*firts_persent/100))/12
         return m.toFixed(2)
     }
 
 
 
     function duo(){
-        var il = Number(document.querySelector("input[name='Initial loan']").value);
-        var dpp= null;
+        let il = Number(document.querySelector("input[name='Initial loan']").value);
+        let dpp= null;
         if(document.querySelector("input[name='Down payment']").value!="" || document.querySelector("input[name='Down payment']").value == '0') {
          dpp =   Number(document.querySelector("input[name='Down payment']").value);
         }else{
             dpp= null;
         }
-        var dp =Number(document.querySelector("input[name='Down payment']").value * 100 /il);
+        let dp =Number(document.querySelector("input[name='Down payment']").value * 100 /il);
 
  //   console.log(il+'  '+document.querySelector("input[name='Down payment']").value +'  '+  dp.toString())
 
@@ -112,7 +124,7 @@
             }
         })
 
-        if(il == 0){
+        if(il == 0 ||dpp == null){
             document.querySelectorAll("#myTable > thead > tr")[0].style = "display:none"
         }
     }

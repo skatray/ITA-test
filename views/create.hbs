@@ -2,24 +2,29 @@
   <h4>Add Bank</h4>
 
     <div class="input-field">
-        <input type="text" name="bank_name">
-        <label>Bank name</label>
+        <input id="bank_name" type="text" name="bank_name" class="validate" required="" aria-required="true">
+        <label for="bank_name">Bank name</label>
+        <span class="helper-text" data-error="field can't be empty"></span>
     </div>
     <div class="input-field">
-        <input type="number" name="interest_rate">
-        <label>Interest rate</label>
+        <input id="interest_rate" type="number" name="interest_rate" class="validate" required="" aria-required="true">
+        <label for="interest_rate">Interest rate</label>
+        <span class="helper-text" data-error="field can't be empty"></span>
     </div>
     <div class="input-field">
-        <input type="number" name="maximum_loan">
-        <label>Maximum loan</label>
+        <input id="maximum_loan" type="number" name="maximum_loan" class="validate"  required="" aria-required="true">
+        <label for="maximum_loan">Maximum loan</label>
+        <span class="helper-text" data-error="field can't be empty"></span>
     </div>
     <div class="input-field">
-        <input type="number" name="m_d_payment">
-        <label>Minimum down payment</label>
+        <input id="m_d_payment" type="number" name="m_d_payment" class="validate"  required="" aria-required="true">
+        <label for="m_d_payment">Minimum down payment</label>
+        <span class="helper-text" data-error="field can't be empty" ></span>
     </div>
     <div class="input-field">
-        <input type="number" name="loan_term">
-        <label>Loan term</label>
+        <input id="loan_term" type="number" name="loan_term" class="validate"  required="" aria-required="true">
+        <label for="loan_term">Loan term</label>
+        <span class="helper-text" data-error="field can't be empty"></span>
     </div>
-    <button type="submit" class="btn"><i class="tiny material-icons">check</i> Add</button>
+    <button type="submit" class="btn"><i class="tiny material-icons left">check</i> Add</button>
 </form>

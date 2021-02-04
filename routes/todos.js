@@ -98,15 +98,17 @@ router.post('/bank/:_id/save',async (req, res) =>{
 })
 
 router.post('/create',async (req, res) =>{
-
-    const bank = new Bank({
-    bank_name: req.body.bank_name,
-    interest_rate: req.body.interest_rate,
-    maximum_loan: req.body.maximum_loan,
-    m_d_payment: req.body.m_d_payment,
-    loan_term: req.body.loan_term
-})
-   await bank.save()
+if(req.body.bank_name, req.body.interest_rate,req.body.maximum_loan,req.body.m_d_payment,req.body.loan_term != "")
+    {
+        const bank = new Bank({
+            bank_name: req.body.bank_name,
+            interest_rate: req.body.interest_rate,
+            maximum_loan: req.body.maximum_loan,
+            m_d_payment: req.body.m_d_payment,
+            loan_term: req.body.loan_term
+        })
+        await bank.save()
+    }
     res.redirect('/')
 })
 
