@@ -1,0 +1,73 @@
+<h4>{{title}}</h4>
+<hr/>
+
+
+{{#if banks1}}
+    {{#if edit}}
+
+            <table class="centered">
+
+                <thead>
+                <tr>
+                    <th>Bank name</th>
+                    <th>Interest rate</th>
+                    <th>Maximum loan</th>
+                    <th>Minimum down payment</th>
+                    <th>Loan term</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <form action="./save" method="post">
+                    <input type="hidden" value="{{_id}}" name="id">
+                    <td><input type="text" name="bank_name" value="{{bank_name}}"></td>
+                    <td><input type="text" name="interest_rate" value="{{interest_rate}}"></td>
+                    <td><input type="text" name="maximum_loan" value="{{maximum_loan}}"></td>
+                    <td><input type="text" name="m_d_payment" value="{{m_d_payment}}"></td>
+                    <td><input type="text" name="loan_term" value="{{loan_term}}"></td>
+                    <td><button class="btn btn-small green right" name="btn" value="check"><i class="small material-icons">check</i></button></td>
+                    <td><button class="btn btn-small red right" name="btn" value="cancel"><i class="small material-icons">cancel</i></button></td>
+        </form>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+        {{else}}
+         <form action="./{{_id}}/edit" method="get">
+        <table class="centered">
+
+            <thead>
+            <tr>
+                <th>Bank name</th>
+                <th>Interest rate</th>
+                <th>Maximum loan</th>
+                <th>Minimum down payment</th>
+                <th>Loan term</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <input type="hidden" value="{{_id}}" name="id">
+                    <td>{{bank_name}}</td>
+                    <td>{{interest_rate}}%</td>
+                    <td>${{maximum_loan}}</td>
+                    <td>{{m_d_payment}}%</td>
+                    <td>{{loan_term}} month</td>
+                    <td><button class="btn btn-small right"><i class="small material-icons">mode_edit</i></button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+    {{/if}}
+{{else}}
+    <p>No banks!</p>
+{{/if}}
+
+

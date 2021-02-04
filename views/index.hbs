@@ -1,0 +1,34 @@
+<h4>Banks page</h4>
+<hr/>
+
+{{#if banks.length}}
+
+<table class="centered">
+
+    <thead>
+    <tr>
+        <th>Bank name</th>
+        <th>Interest rate</th>
+        <th>Maximum loan</th>
+        <th>Minimum down payment</th>
+        <th>Loan term</th>
+    </tr>
+    </thead>
+
+    <tbody>{{#each banks}}
+    <tr><form action="/delete" method="post">
+        <input type="hidden" value="{{_id}}" name="id">
+        <td><a href="/bank/{{_id}}">{{bank_name}}</a></td>
+        <td>{{interest_rate}}%</td>
+        <td>${{maximum_loan}}</td>
+        <td>{{m_d_payment}}%</td>
+        <td>{{loan_term}} month</td>
+        <td><button class="btn btn-small red right"><i class="small material-icons">not_interested</i></button></td>
+    </form>
+    </tr> {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+    <p>No banks!</p>
+{{/if}}

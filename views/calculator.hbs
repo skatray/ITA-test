@@ -1,0 +1,119 @@
+<h4>Mortgage calculator</h4>
+<hr/>
+<table class="centered" style="margin-top: 20px">
+    <!--  <caption>Calculate</caption>
+      <thead>
+      <tr>
+          <th>Bank name</th>
+          <th>Interest rate</th>
+          <th>Maximum loan</th>
+          <th>Minimum down payment</th>
+          <th>Loan term</th>
+      </tr> -->
+    </thead>
+
+    <tbody>
+    <tr>
+
+        <td>$</td><td><input type="number" name="Initial loan" value="" onkeyup="duo()"><label class="left" for="Initial loan">Initial loan:</label></td>
+        <td>$</td><td><input type="number" name="Down payment" value="" onkeyup="duo()"><label class="left" for="Initial loan">Down payment:</label></td>
+       <!-- <td>
+            <div class="input-field col s12 ">
+                <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    {{#each banks}}
+                    <option value="{{_id}}">{{bank_name}}</option>
+                        {{/each}}
+                </select>
+
+            </div><label class="left" for="Initial loan">⠀</label>
+        </td> -->
+    </tr>
+    </tbody>
+</table>
+
+
+
+<table id="myTable" class="centered" style="margin-top: 20px" >
+    <!--  <caption>Calculate</caption>
+      <thead>
+      <tr>
+          <th>Bank name</th>
+          <th>Interest rate</th>
+          <th>Maximum loan</th>
+          <th>Minimum down payment</th>
+          <th>Loan term</th>
+      </tr> -->
+    <thead>
+    <tr style="display: none">
+        <th>Bank name</th>
+        <th>Monthly payment</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#each banks}}
+    <tr>
+
+        <td class="left"style="display: none"><a href="/bank/{{_id}}">{{bank_name}}</a></td>
+        <td style="display: none">{{interest_rate}}</td>
+        <td style="display: none">{{loan_term}}</td>
+        <td style="display: none"></td>
+        <td style="display: none">{{maximum_loan}}</td>
+        <td style="display: none">{{{m_d_payment}}}</td>
+        <input type="hidden" value="{{_id}}" name="id">
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<script>
+
+    function calc(money,firts_persent,year_persent,month){
+
+        let  p=Number(money)
+        let  r=Number(firts_persent)
+        let  n=Number (month)
+      //  m=(p*(r/12)*(1+r/12)^n)/((1+r/12)^n-1)
+              m=  ((p+p*year_persent/100)-(p*firts_persent/100))/12
+        return m.toFixed(2)
+    }
+
+
+
+    function duo(){
+        var il = Number(document.querySelector("input[name='Initial loan']").value);
+        var dpp= null;
+        if(document.querySelector("input[name='Down payment']").value!="") {
+         dpp =   Number(document.querySelector("input[name='Down payment']").value);
+        }
+        var dp =Number(document.querySelector("input[name='Down payment']").value * 100 /il);
+
+ //   console.log(il+'  '+document.querySelector("input[name='Down payment']").value +'  '+  dp.toString())
+
+
+        document.querySelectorAll("#myTable > tbody > tr").forEach(e=> {
+            try {
+                if (Number(il) <= Number(e.children[4].textContent) && Number(dp) >= Number(e.children[5].textContent)&&dpp!=0 &&Number(il)!=0 && il>dpp)  {
+                    document.querySelectorAll("#myTable > thead > tr")[0].style = "display:"
+                    e.children[0].style = "display:"
+                    e.children[3].style = "display:"
+                } else {
+                    e.children[0].style = "display:none"
+                    e.children[3].style = "display:none"
+                }
+                e.children[3].textContent = "$ "+ calc(il, dp, e.children[1].textContent, e.children[2].textContent)
+            }catch (e){
+                e.children[0].style = "display:none"
+                e.children[3].style = "display:none"
+                document.querySelectorAll("#myTable > thead > tr")[0].style = "display:none"
+            }
+        })
+
+        if(il == 0){
+            document.querySelectorAll("#myTable > thead > tr")[0].style = "display:none"
+        }
+    }
+
+
+</script>
