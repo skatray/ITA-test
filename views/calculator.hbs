@@ -84,8 +84,10 @@
     function duo(){
         var il = Number(document.querySelector("input[name='Initial loan']").value);
         var dpp= null;
-        if(document.querySelector("input[name='Down payment']").value!="") {
+        if(document.querySelector("input[name='Down payment']").value!="" || document.querySelector("input[name='Down payment']").value == '0') {
          dpp =   Number(document.querySelector("input[name='Down payment']").value);
+        }else{
+            dpp= null;
         }
         var dp =Number(document.querySelector("input[name='Down payment']").value * 100 /il);
 
@@ -94,7 +96,7 @@
 
         document.querySelectorAll("#myTable > tbody > tr").forEach(e=> {
             try {
-                if (Number(il) <= Number(e.children[4].textContent) && Number(dp) >= Number(e.children[5].textContent)&&dpp!=0 &&Number(il)!=0 && il>dpp)  {
+                if (Number(il) <= Number(e.children[4].textContent) && Number(dp) >= Number(e.children[5].textContent)&&dpp!=null &&Number(il)!=0 && il>dpp)  {
                     document.querySelectorAll("#myTable > thead > tr")[0].style = "display:"
                     e.children[0].style = "display:"
                     e.children[3].style = "display:"
