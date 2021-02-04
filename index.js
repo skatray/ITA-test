@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 const exphbs = require('express-handlebars')
 const todosRoutes = require('./routes/todos')
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 443
 const app = express()
 const hbs =exphbs.create({
     defaultLayout:'main',
