@@ -22,10 +22,10 @@
                     <form action="./save" method="post">
                     <input type="hidden" value="{{_id}}" name="id">
                     <td><input type="text" name="bank_name" value="{{bank_name}}"></td>
-                    <td><input type="text" name="interest_rate" value="{{interest_rate}}"></td>
-                    <td><input type="text" name="maximum_loan" value="{{maximum_loan}}"></td>
-                    <td><input type="text" name="m_d_payment" value="{{m_d_payment}}"></td>
-                    <td><input type="text" name="loan_term" value="{{loan_term}}"></td>
+                    <td><input type="number" name="interest_rate" max="90" class="validate"  required="" value="{{interest_rate}}"></td>
+                    <td><input type="number" name="maximum_loan" value="{{maximum_loan}}"></td>
+                    <td><input type="number" name="m_d_payment" max="100" value="{{m_d_payment}}" class="validate"  required=""></td>
+                    <td><input type="number" name="loan_term" value="{{loan_term}}"></td>
                     <td><button class="btn btn-small green right" name="btn" value="check"><i class="small material-icons">check</i></button></td>
                     <td><button class="btn btn-small red right" name="btn" value="cancel"><i class="small material-icons">cancel</i></button></td>
         </form>
@@ -59,7 +59,9 @@
                     <td>${{maximum_loan}}</td>
                     <td>{{m_d_payment}}%</td>
                     <td>{{loan_term}} month</td>
+                    {{#unless calculate}}
                     <td><button class="btn btn-small right"><i class="small material-icons">mode_edit</i></button></td>
+                    {{/unless}}
                 </tr>
 
             </tbody>
@@ -71,3 +73,78 @@
 {{/if}}
 
 
+{{#if calculate}}
+    <h4>Your monthly payments:</h4>
+    <p style="color: darkgray; margin-left: 10px"> Initial loan: {{loan}} Down payment: {{payment}}</p>
+    <input type="hidden" value="{{loan}}" name="loan">
+    <input type="hidden" value="{{payment}}" name="payment">
+
+    <table class="centered">
+
+        <thead>
+        <tr>
+            <th>Month</th>
+            <th>Total payment</th>
+            <th>Interest payment</th>
+            <th>Loan balance</th>
+            <th>Equity</th>
+        </tr>
+        </thead>
+
+        <tbody id="resault">
+        <tr>
+            <td>{{bank_name}}</td>
+            <td>{{interest_rate}}%</td>
+            <td>${{maximum_loan}}</td>
+            <td>{{m_d_payment}}%</td>
+            <td>{{loan_term}} month</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+<script>
+    let manthpayment = calc({{loan}},Number({{interest_rate}})/100,{{loan_term}})
+    let interest = calc_interest(Number({{interest_rate}})/100,{{loan}})
+    let balance = calc_balance(Number({{loan}}),Number(manthpayment),Number(interest));
+    let equity = calc_equity(Number({{loan}}),{{payment}},balance)
+    let  data="";
+    let totalinterest=interest;
+    for(let i= 1;i<={{loan_term}};i++){
+         data+="<tr>";
+     data +="<td>"+i+"</td><td>"+tofix(manthpayment)+"</td><td>"+ tofix(interest) +"</td><td>"+tofix(Math.abs(balance))+"</td><td>"+tofix(equity)+"</td>";
+        data+="</tr>";
+        interest=calc_interest(Number({{interest_rate}})/100,balance)
+        totalinterest+=interest
+        balance = calc_balance(Number(balance),Number(manthpayment),Number(interest));
+        equity = calc_equity(Number({{loan}}),{{payment}},balance)
+    }
+    data+="<tr class='bold'>";
+    data +="<td>"+"</td><td></td><td>"+ tofix(totalinterest) +"</td><td></td><td></td>";
+    data+="</tr>";
+
+    document.getElementById('resault').innerHTML= data;
+
+
+    function calc(p,r,n) {
+        let m = (p * (r / 12) * Math.pow(1 + r / 12, n)) / (Math.pow(1 + r / 12, n) - 1)
+        return m//.toFixed(2);
+    }
+    function calc_interest(a,b){
+      let f=  (a*b/12)//.toFixed(2);
+       return f
+    }
+    function calc_balance(balance,manthpayment,interest){
+        let f= balance-manthpayment+interest;
+        return f//.toFixed(2)
+    }
+    function calc_equity(loan,dp,balance){
+        let f = loan+dp-balance
+        return f.toFixed(2)
+    }
+    function tofix(a){
+        return Number(a).toFixed(2)
+    }
+</script>
+{{/if}}

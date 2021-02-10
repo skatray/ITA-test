@@ -61,33 +61,36 @@
 
     <tbody>
     {{#each banks}}
-        <input type="hidden" value="{{_id}}" name="id">
-    <tr>
+        <input type="hidden" class="id" value="{{_id}}" name="id">
 
-        <td class="left" style="display: none"><a href="/bank/{{_id}}">{{bank_name}}</a></td>
+    <tr>
+        <td class="left" style="display: none"><a id="id" href="/bank/{{_id}}" bankid="{{_id}}">{{bank_name}}</a></td>
         <td style="display: none">{{interest_rate}}</td>
         <td style="display: none">{{loan_term}}</td>
         <td style="display: none"></td>
         <td style="display: none">{{maximum_loan}}</td>
-        <td style="display: none">{{{m_d_payment}}}</td>
+        <td style="display: none">{{m_d_payment}}</td>
+
+
 
     </tr>
+
     {{/each}}
     </tbody>
 </table>
 
 <script>
+
     if(document.querySelector("input[name='Initial loan']").value != "" || document.querySelector("input[name='Down payment']").value !=""){
         duo();
     }
 
-    function calc(money,firts_persent,year_persent){
+    function calc(money,firts_persent,year_persent,loan_term){
 
         let  p=Number(money)
-        let  r=Number(firts_persent)
-      //  let  n=Number (month)
-      //  m=(p*(r/12)*(1+r/12)^n)/((1+r/12)^n-1)
-         let  m=  ((p+p*year_persent/100)-(p*firts_persent/100))/12
+        let  r=Number(year_persent)/100
+        let  n=Number (loan_term)
+        let m = (p*(r/12)*Math.pow(1+r/12, n))/(Math.pow(1+r/12,n)-1)
         return m.toFixed(2)
     }
 
@@ -102,8 +105,7 @@
             dpp= null;
         }
         let dp =Number(document.querySelector("input[name='Down payment']").value * 100 /il);
-
- //   console.log(il+'  '+document.querySelector("input[name='Down payment']").value +'  '+  dp.toString())
+        urlGenerate(il,dpp);
 
 
         document.querySelectorAll("#myTable > tbody > tr").forEach(e=> {
@@ -129,5 +131,11 @@
         }
     }
 
+    function urlGenerate(il,dp){
+        document.querySelectorAll('a[id=id]').forEach(a=>{
+          let curentid = a.getAttribute('bankid')
+            a.href= '/bank/'+ curentid+'?loan='+il+"&payment="+dp+"&calculate=true"
+        })
+    }
 
 </script>

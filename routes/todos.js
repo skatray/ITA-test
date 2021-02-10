@@ -36,29 +36,44 @@ router.get('/create',(req, res) => {
 })
 
 router.get('/bank/:_id',async (req,res)=>{
-try {
-    const banks1 = await Bank.findById(req.params._id)
-    await banks1.save();
+    //  req.query.loan
+    //  req.query.payment
+    //  req.query.calculate
+    try {
+        const banks1 = await Bank.findById(req.params._id)
+        await banks1.save();
 
-    res.render('bank', {
-        title: "Bank " + banks1.bank_name,
-        _id: banks1._id,
-        bank_name: banks1.bank_name,
-        interest_rate: banks1.interest_rate,
-        maximum_loan: banks1.maximum_loan,
-        m_d_payment: banks1.m_d_payment,
-        loan_term: banks1.loan_term,
-        banks1,
-        edit: false,
-      //  calc: calc(1000,banks1.m_d_payment,banks1.interest_rate,banks1.loan_term).toString()
-    })
-}
-catch(e)
-{
-    console.log(e)
-    res.redirect('/')
-}
+        let calculate = false;
+        if(req.query.loan && req.query.payment && req.query.calculate){
+            calculate= true
+        }
+        else {
+            calculate = false
+        }
+
+        res.render('bank', {
+            title: "Bank " + banks1.bank_name,
+            _id: banks1._id,
+            bank_name: banks1.bank_name,
+            interest_rate: banks1.interest_rate,
+            maximum_loan: banks1.maximum_loan,
+            m_d_payment: banks1.m_d_payment,
+            loan_term: banks1.loan_term,
+            banks1,
+            edit: false,
+            loan: req.query.loan,
+            payment: req.query.payment,
+            calculate: calculate
+        })
+    }
+    catch(e)
+    {
+        console.log(e)
+        res.redirect('/')
+    }
 })
+
+
 
 router.get('/bank/:_id/edit',async (req,res)=>{
 

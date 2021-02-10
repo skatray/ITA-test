@@ -19,7 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbf15f19-71d1-4c24-b0d9-db71a76cf27a" name="Default Changelist" comment="" />
+    <list default="true" id="bbf15f19-71d1-4c24-b0d9-db71a76cf27a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/todos.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/todos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/bank.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/bank.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/calculator.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/calculator.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/create.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/create.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/navbar.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.hbs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +100,12 @@
       <updated>1612351650172</updated>
       <workItem from="1612351651210" duration="51188000" />
       <workItem from="1612460871446" duration="241000" />
-      <workItem from="1612467945274" duration="11679000" />
+      <workItem from="1612467945274" duration="12596000" />
+      <workItem from="1612483290362" duration="76000" />
+      <workItem from="1612484211946" duration="880000" />
+      <workItem from="1612536248209" duration="612000" />
+      <workItem from="1612875359484" duration="140000" />
+      <workItem from="1612896188671" duration="15706000" />
     </task>
     <servers />
   </component>
@@ -107,6 +122,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2023" y="38" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612352615428">
@@ -121,29 +137,30 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="784" y="444" key="Github.CreateGistDialog/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612450919833" />
-    <state width="1877" height="233" key="GridCell.Tab.0.bottom" timestamp="1612476247473">
+    <state width="1877" height="233" key="GridCell.Tab.0.bottom" timestamp="1612902688770">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612476247473" />
+    <state width="1877" height="233" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612902688770" />
     <state width="1255" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1298.768@1920.0.1298.768" timestamp="1612352655541" />
-    <state width="1877" height="233" key="GridCell.Tab.0.center" timestamp="1612476247473">
+    <state width="1877" height="233" key="GridCell.Tab.0.center" timestamp="1612902688770">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612476247473" />
+    <state width="1877" height="233" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612902688770" />
     <state width="1255" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1298.768@1920.0.1298.768" timestamp="1612352655541" />
-    <state width="1877" height="233" key="GridCell.Tab.0.left" timestamp="1612476247473">
+    <state width="1877" height="233" key="GridCell.Tab.0.left" timestamp="1612902688770">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612476247473" />
+    <state width="1877" height="233" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612902688770" />
     <state width="1255" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1298.768@1920.0.1298.768" timestamp="1612352655541" />
-    <state width="1877" height="233" key="GridCell.Tab.0.right" timestamp="1612476247473">
+    <state width="1877" height="233" key="GridCell.Tab.0.right" timestamp="1612902688770">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612476247473" />
+    <state width="1877" height="233" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612902688770" />
     <state width="1255" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1298.768@1920.0.1298.768" timestamp="1612352655541" />
-    <state x="626" y="0" width="802" height="536" maximized="true" key="dock-window-1" timestamp="1612359020889">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="1920" y="0" width="1314" height="661" key="dock-window-1" timestamp="1612907282501">
+      <screen x="1920" y="0" width="1298" height="768" />
     </state>
+    <state x="1920" y="0" width="1314" height="661" key="dock-window-1/0.0.1920.1050/1920.0.1298.768@0.0.1920.1050" timestamp="1612907282501" />
     <state x="626" y="0" width="802" height="536" maximized="true" key="dock-window-1/0.0.1920.1050/1920.0.1298.768@1920.0.1298.768" timestamp="1612359020889" />
     <state x="484" y="0" width="802" height="536" maximized="true" key="dock-window-2" timestamp="1612362235759">
       <screen x="0" y="0" width="1920" height="1050" />
